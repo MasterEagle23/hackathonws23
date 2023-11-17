@@ -50,7 +50,7 @@ def decide(table: Table) -> Bet:
                                          * (rank_sum / len(hand_cards)) / 10) * we.stack
 
     # dont go all in with a medium hand
-    if bet_amount-we.stack <= 0 and rank_sum < 25:
+    if bet_amount - we.stack <= 0 and rank_sum < 25:
         bet_amount = 0
 
     print(f"Bet: {bet_amount} = min {table.minimumBet}, "
