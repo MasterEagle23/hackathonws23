@@ -7,7 +7,7 @@ def decide(table: Table) -> Bet:
     # TODO: Add Poker Logic Here... :)
     we = table.players[table.activePlayer]
 
-    card_list = []
+    card_list = list()
     for card in we.cards:
         card_list = card_list.append((card.rank.value, card.suit.value))
 
