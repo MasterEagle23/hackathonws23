@@ -52,17 +52,19 @@ def decide(table: Table) -> Bet:
     else:
         bet_amount = table.minimumBet + ((1 / table.round + len(table.players))
                                          * (rank_sum / len(hand_cards)) / 10) * we.stack
-    # dont go all in with a medium hand
+        # dont go all in with a medium hand
         if bet_amount - we.stack <= 0 and rank_sum < 30:
             bet_amount = 0
 
     print(f"Bet: {bet_amount} = min {table.minimumBet}, "
           + f" round {table.round}, sum {rank_sum}, stack {we.stack}, players {len(table.players)}")
     del we
+
+    return Bet(int(bet_amount))
 """
     try:
         print(table.__dict__)
     except Exception:
         pass
 """
-    return Bet(int(bet_amount))
+
