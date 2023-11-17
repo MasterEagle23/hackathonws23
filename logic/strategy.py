@@ -37,11 +37,11 @@ def decide(table: Table) -> Bet:
 
     # pair
     if hand_cards[0][0] == hand_cards[1][0]:
-        rank_sum = rank_sum * 10
+        rank_sum = rank_sum * 5
 
     # two of suit
     if hand_cards[0][1] == hand_cards[1][1]:
-        rank_sum = rank_sum * 1.5
+        rank_sum = rank_sum * 1.1
 
     if rank_sum < 15:
         bet_amount = 0
