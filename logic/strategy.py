@@ -45,13 +45,16 @@ def decide(table: Table) -> Bet:
 
     if rank_sum < 15:
         bet_amount = 0
+    # dont go all in with a medium hand
+    elif bet_amount - we.stack <= 0 and rank_sum < 30:
+        bet_amount = 0
+
+    # dont raise with only one other player
+    elif len(table.players) < 3:
+        bet_amount = table.minimumBet
     else:
         bet_amount = table.minimumBet + ((1 / table.round + len(table.players))
                                          * (rank_sum / len(hand_cards)) / 10) * we.stack
-
-    # dont go all in with a medium hand
-    if bet_amount - we.stack <= 0 and rank_sum < 30:
-        bet_amount = 0
 
     print(f"Bet: {bet_amount} = min {table.minimumBet}, "
           + f" round {table.round}, sum {rank_sum}, stack {we.stack}, players {len(table.players)}")
