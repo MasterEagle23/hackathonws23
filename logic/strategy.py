@@ -4,12 +4,11 @@ import datetime
 
 
 def decide(table: Table) -> Bet:
-    # TODO: Add Poker Logic Here... :)
     we = table.players[table.activePlayer]
 
     card_list = list()
     for card in we.cards:
-        card_list = card_list.append((card.rank.value, card.suit.value))
+        card_list = card_list + [(card.rank.value, card.suit.value)]
 
     print(f"[{datetime.datetime.now()}]\nCards: {len(card_list)}, {card_list}, ")
 
