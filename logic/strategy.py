@@ -60,7 +60,7 @@ def decide(table: Table) -> Bet:
           + f" round {table.round}, sum {rank_sum}, stack {we.stack}, players {len(table.players)}")
     del we
     try:
-        print(dict(table))
+        print(table.__dict__)
     except Exception:
         pass
     return Bet(int(bet_amount))
