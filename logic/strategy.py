@@ -59,4 +59,5 @@ def decide(table: Table) -> Bet:
     print(f"Bet: {bet_amount} = min {table.minimumBet}, "
           + f" round {table.round}, sum {rank_sum}, stack {we.stack}, players {len(table.players)}")
     del we
+    print(table)
     return Bet(int(bet_amount))
