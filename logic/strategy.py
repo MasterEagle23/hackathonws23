@@ -11,13 +11,13 @@ def decide(table: Table) -> Bet:
 
     rank_sum = 0
     for card in we.cards:
-        if card.rank == "J":
+        if card.rank.value == "J":
             rank_value = 11
-        elif card.rank == "Q":
+        elif card.rank.value == "Q":
             rank_value = 12
-        elif card.rank == "K":
+        elif card.rank.value == "K":
             rank_value = 13
-        elif card.rank == "A":
+        elif card.rank.value == "A":
             rank_value = 15
         else:
             rank_value = int(card.rank.value)
