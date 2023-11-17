@@ -7,7 +7,7 @@ def decide(table: Table) -> Bet:
     # TODO: Add Poker Logic Here... :)
     we = table.players[table.activePlayer]
 
-    print(f"[{datetime.datetime.now()}]Cards: {we.cards}")
+    print(f"[{datetime.datetime.now()}]\nCards: {list(we.cards)}")
 
     rank_sum = 0
     for card in we.cards:
