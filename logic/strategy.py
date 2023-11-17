@@ -16,17 +16,17 @@ def decide(table: Table) -> Bet:
     print(f"Cards: {len(card_list)}, {card_list}, ")
 
     rank_sum = 0
-    for card in we.cards:
-        if card.rank.value == "J":
+    for card in card_list:
+        if card[0] == "J":
             rank_value = 11
-        elif card.rank.value == "Q":
+        elif card[0] == "Q":
             rank_value = 12
-        elif card.rank.value == "K":
+        elif card[0] == "K":
             rank_value = 13
-        elif card.rank.value == "A":
+        elif card[0] == "A":
             rank_value = 15
         else:
-            rank_value = int(card.rank.value)
+            rank_value = int(card[0])
         rank_sum = rank_sum + rank_value
 
     if rank_sum < 10:
