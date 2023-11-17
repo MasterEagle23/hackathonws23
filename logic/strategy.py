@@ -11,6 +11,8 @@ def decide(table: Table) -> Bet:
     for card in we.cards:
         card_list = card_list + [(card.rank.value, card.suit.value)]
 
+    card_list = card_list[-1] + card_list[-2]
+
     print(f"[{datetime.datetime.now()}]\nCards: {len(card_list)}, {card_list}, ")
 
     rank_sum = 0
