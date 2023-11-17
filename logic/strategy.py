@@ -28,5 +28,5 @@ def decide(table: Table) -> Bet:
     else:
         bet_amount = table.minimumBet + (1 / table.round) * we.stack * (rank_sum / 10)
     print(f"Bet: {bet_amount}")
-
+    del we
     return Bet(int(bet_amount))
