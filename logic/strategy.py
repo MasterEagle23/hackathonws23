@@ -6,7 +6,8 @@ import datetime
 def decide(table: Table) -> Bet:
     we = table.players[table.activePlayer]
 
-    card_list = list()
+    card_list = list([])
+    print(f"CardList {card_list}")
     for card in we.cards:
         card_list = card_list + [(card.rank.value, card.suit.value)]
 
