@@ -8,4 +8,4 @@ def decide(table: Table) -> Bet:
     bet_amount = table.minimumBet + (1/table.round) * table.activePlayer.stash
     print(f"{bet_amount}")
 
-    return Bet(bet_amount)
+    return Bet(int(bet_amount))
