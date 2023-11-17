@@ -4,6 +4,7 @@ import datetime
 
 
 def decide(table: Table) -> Bet:
+    print(f"---\n[{datetime.datetime.now()}]\n")
     we = table.players[table.activePlayer]
 
     card_list = list([])
@@ -12,7 +13,7 @@ def decide(table: Table) -> Bet:
 
     card_list = [card_list[-1], card_list[-2]]
 
-    print(f"[{datetime.datetime.now()}]\nCards: {len(card_list)}, {card_list}, ")
+    print(f"Cards: {len(card_list)}, {card_list}, ")
 
     rank_sum = 0
     for card in we.cards:
