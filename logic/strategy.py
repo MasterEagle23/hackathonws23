@@ -7,11 +7,10 @@ def decide(table: Table) -> Bet:
     we = table.players[table.activePlayer]
 
     card_list = list([])
-    print(f"CardList {card_list}")
     for card in we.cards:
         card_list = card_list + [(card.rank.value, card.suit.value)]
 
-    card_list = card_list[-1] + card_list[-2]
+    card_list = [card_list[-1], card_list[-2]]
 
     print(f"[{datetime.datetime.now()}]\nCards: {len(card_list)}, {card_list}, ")
 
