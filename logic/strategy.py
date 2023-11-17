@@ -9,7 +9,7 @@ def decide(table: Table) -> Bet:
 
     print(f"[{datetime.datetime.now()}]Cards: {we.cards}")
 
-    bet_amount = table.minimumBet + (1/table.round) * we.stash
+    bet_amount = table.minimumBet + (1/table.round) * we.stack
     print(f"{bet_amount}")
 
     return Bet(int(bet_amount))
