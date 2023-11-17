@@ -36,6 +36,6 @@ def decide(table: Table) -> Bet:
     else:
         bet_amount = table.minimumBet + ((1 / table.round) * (rank_sum / len(card_list))/10) * we.stack
     print(f"Bet: {bet_amount} ({table.minimumBet} + "
-          + "(1/{table.round}) * {we.stack} * ({rank_sum}/{len(card_list)}))/100")
+          + f"(1/{table.round}) * {we.stack} * ({rank_sum}/{len(card_list)}))/100")
     del we
     return Bet(int(bet_amount))
