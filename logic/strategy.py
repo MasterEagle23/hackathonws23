@@ -31,7 +31,6 @@ def decide(table: dict) -> Bet:
 
     # calc sum of hand
     rank_sum = 0
-    print(rank_sum)
     for card in hand_cards:
         if card[0] == "J":
             rank_value = 11
@@ -44,18 +43,19 @@ def decide(table: dict) -> Bet:
         else:
             rank_value = int(card[0])
         rank_sum = rank_sum + rank_value
-        print(rank_sum)
+        print(f"rank_sum: {rank_sum}")
 
+    hand_value = rank_sum
     # pair
     if hand_cards[0][0] == hand_cards[1][0]:
-        rank_sum = rank_sum * 5
+        hand_value = hand_value * 5
 
     # two of suit
     if hand_cards[0][1] == hand_cards[1][1]:
-        rank_sum = rank_sum * 1.1
+        hand_value = hand_value * 1.1
 
     # min sum to play
-    if rank_sum < 15:
+    if hand_value < 15:
         bet_amount = 0
         print(f"Fold for low Value")
 
@@ -66,14 +66,14 @@ def decide(table: dict) -> Bet:
     else:
         bet_amount = table.get("minimumBet") + \
                      ((1 / table.get('round') + no_of_active_players(table.get("players")))
-                      * (rank_sum * rank_sum / 100)) * we.get('stack')
+                      * (hand_value * hand_value / 100)) * we.get('stack')
         # don't go all in with a medium hand
-        if bet_amount - we.get('stack') <= 0 and rank_sum < 30:
+        if bet_amount - we.get('stack') <= 0 and hand_value < 30:
             bet_amount = 0
             print(f"dont go all in with mid")
 
     print(f"Bet: {bet_amount} = min {table.get('minimumBet')}, "
-          + f" round {table.get('round')}, sum {rank_sum}, stack {we.get('stack')}, players {len(table.get('players'))}")
+          + f" round {table.get('round')}, value {hand_value}, stack {we.get('stack')}, players {len(table.get('players'))}")
     del we
 
     return Bet(int(bet_amount))
