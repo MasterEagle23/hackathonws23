@@ -7,7 +7,7 @@ def decide(table: dict) -> Bet:
     we = table.get("players")[table.get("activePlayer")]
 
     hand_cards = list([])
-    for card in we.cards:
+    for card in we.get('cards'):
         hand_cards = hand_cards + [(card.get('rank'), card.get('suit'))]
 
     common_cards = []
