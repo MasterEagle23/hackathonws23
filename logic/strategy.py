@@ -66,7 +66,7 @@ def decide(table: dict) -> Bet:
 
     # raise with good hand
     elif hand_value > 50:
-        bet_amount = table.get("minimumBet") + (hand_value / 10) * table.get("minimumRaise")
+        bet_amount = table.get("minimumBet") + (hand_value / 10) * table.get("minimumRaise") * (1/table.get('round'))
 
     # min raise
     else:
