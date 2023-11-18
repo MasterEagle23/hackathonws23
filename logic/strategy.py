@@ -49,9 +49,11 @@ def best_hand(cards: list) -> (dict, int):
         values[i] = cards[i][0]
 
     # check for straight
+    prev_value = 0
+    straight_length = 0
     for card in cards:
-        pass
-    # todo here
+        if card[0] == prev_value or card[0] == 4:
+            straight_length = straight_length + 1
 
 
 def decide(table: dict) -> Bet:
@@ -117,8 +119,12 @@ def decide(table: dict) -> Bet:
 
     # don't raise with a medium hand
     if we.get('stack') - bet_amount <= 0 and hand_value < 30:
-        bet_amount = 0
-        print(f"dont raise all in with mid")
+        if we.get('stack') - table.get("minimumBet") > 0:
+            bet_amount = table.get("minimumBet")
+            print(f"dont raise all in with mid 2")
+        else:
+            bet_amount = 0
+            print(f"dont raise all in with mid 1")
 
     print(f"Bet: {bet_amount} = min {table.get('minimumBet')}, "
           + f" round {table.get('round')}, value {hand_value}, stack {we.get('stack')}, players {len(table.get('players'))}")
