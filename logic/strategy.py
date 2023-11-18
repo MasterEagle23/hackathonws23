@@ -2,6 +2,15 @@ from models.bet import Bet
 import datetime
 
 
+def no_of_active_players(players: dict) -> int:
+    out = 0
+    for player in players:
+        if player.get("status") == "ACTIVE":
+            out = out + 1
+
+    return out
+
+
 def decide(table: dict) -> Bet:
     # debug timestamp
     print(f"---\n[{datetime.datetime.now()}]\n")
@@ -48,16 +57,20 @@ def decide(table: dict) -> Bet:
     # min sum to play
     if rank_sum < 15:
         bet_amount = 0
+        print(f"Fold for low Value")
 
     # don't raise with only one other player
     elif len(table.get("players")) < 3:
         bet_amount = table.get("minimumBet")
+        print(f"Min Bet for few players")
     else:
-        bet_amount = table.get("minimumBet") + ((1 / table.get('round') + len(table.get("players")))
-                                                * (rank_sum / len(hand_cards)) / 10) * we.get('stack')
+        bet_amount = table.get("minimumBet") + \
+                     ((1 / table.get('round') + no_of_active_players(table.get("players")))
+                      * (rank_sum * rank_sum / 100)) * we.get('stack')
         # don't go all in with a medium hand
         if bet_amount - we.get('stack') <= 0 and rank_sum < 30:
             bet_amount = 0
+            print(f"dont go all in with mid")
 
     print(f"Bet: {bet_amount} = min {table.get('minimumBet')}, "
           + f" round {table.get('round')}, sum {rank_sum}, stack {we.get('stack')}, players {len(table.get('players'))}")
