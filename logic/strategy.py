@@ -8,11 +8,11 @@ def decide(table: dict) -> Bet:
 
     hand_cards = list([])
     for card in we.cards:
-        hand_cards = hand_cards + [(card.rank.value, card.suit.value)]
+        hand_cards = hand_cards + [(card.get('rank'), card.get('suit'))]
 
     common_cards = []
     for card in table.get("communityCards"):
-        common_cards = common_cards + [(card.rank.value, card.suit.value)]
+        common_cards = common_cards + [(card.get('rank'), card.get('suit'))]
 
     hand_cards = [hand_cards[-1], hand_cards[-2]]
 
