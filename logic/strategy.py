@@ -39,7 +39,7 @@ def decide(table: dict) -> Bet:
         elif card[0] == "K":
             rank_value = 13
         elif card[0] == "A":
-            rank_value = 15
+            rank_value = 14
         else:
             rank_value = int(card[0])
         rank_sum = rank_sum + rank_value
@@ -55,7 +55,7 @@ def decide(table: dict) -> Bet:
         hand_value = hand_value * 1.1
 
     # min sum to play
-    if hand_value < 15:
+    if hand_value < 22:
         bet_amount = 0
         print(f"Fold for low Value")
 
