@@ -19,12 +19,12 @@ def decide(table: dict) -> Bet:
     hand_cards = list([])
     for card in we.get('cards'):
         hand_cards = hand_cards + [(card.get('rank'), card.get('suit'))]
-    print(f"hand_cards: {hand_cards}")
+    # print(f"hand_cards: {hand_cards}")
 
     common_cards = []
     for card in table.get("communityCards"):
         common_cards = common_cards + [(card.get('rank'), card.get('suit'))]
-    print(f"common_cards: {common_cards}")
+    # print(f"common_cards: {common_cards}")
 
     hand_cards = [hand_cards[-1], hand_cards[-2]]
     print(f"Cards: {len(hand_cards)}, H:{hand_cards}, C: {common_cards}")
