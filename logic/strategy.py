@@ -50,10 +50,20 @@ def best_hand(cards: list) -> (dict, int):
 
     # check for straight
     prev_value = 0
-    straight_length = 0
+    straight_length = 1
     for card in cards:
-        if card[0] == prev_value or card[0] == 4:
+        if card[0] == prev_value - 1:
             straight_length = straight_length + 1
+        prev_value = card[0]
+
+    if straight_length >= 5:
+        straight = True
+
+def check_cards_for_flush(cards:dict) -> ():
+    # check for flush
+    for card in cards:
+        cards_tmp = cards
+        cards_tmp.remove(card)
 
 
 def decide(table: dict) -> Bet:
@@ -123,7 +133,7 @@ def decide(table: dict) -> Bet:
             bet_amount = table.get("minimumBet")
             print(f"dont raise all in with mid 2")
         else:
-            bet_amount = 0
+            # bet_amount = 0
             print(f"dont raise all in with mid 1")
 
     print(f"Bet: {bet_amount} = min {table.get('minimumBet')}, "
