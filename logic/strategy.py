@@ -66,7 +66,7 @@ def decide(table: dict) -> Bet:
     else:
         bet_amount = table.get("minimumBet") + \
                      ((1 / table.get('round') + no_of_active_players(table.get("players")))
-                      * (hand_value * hand_value / 100)) * we.get('stack')
+                      * (hand_value / 100) * (hand_value / 100)) * we.get('stack')
         # don't go all in with a medium hand
         if bet_amount - we.get('stack') <= 0 and hand_value < 30:
             bet_amount = 0
