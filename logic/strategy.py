@@ -43,7 +43,7 @@ def decide(table: dict) -> Bet:
         else:
             rank_value = int(card[0])
         rank_sum = rank_sum + rank_value
-        print(f"rank_sum: {rank_sum}")
+    print(f"rank_sum: {rank_sum}")
 
     hand_value = rank_sum
     # pair
@@ -74,6 +74,5 @@ def decide(table: dict) -> Bet:
 
     print(f"Bet: {bet_amount} = min {table.get('minimumBet')}, "
           + f" round {table.get('round')}, value {hand_value}, stack {we.get('stack')}, players {len(table.get('players'))}")
-    del we
 
-    return Bet(int(bet_amount))
+    return Bet(int(min(we.get("stack"), bet_amount)))
