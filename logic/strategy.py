@@ -50,13 +50,13 @@ def decide(table: dict) -> Bet:
         bet_amount = table.get("minimumBet")
     else:
         bet_amount = table.get("minimumBet") + ((1 / table.get('round') + len(table.get("players")))
-                                         * (rank_sum / len(hand_cards)) / 10) * we.stack
+                                                * (rank_sum / len(hand_cards)) / 10) * we.get('stack')
         # dont go all in with a medium hand
-        if bet_amount - we.stack <= 0 and rank_sum < 30:
+        if bet_amount - we.get('stack') <= 0 and rank_sum < 30:
             bet_amount = 0
 
     print(f"Bet: {bet_amount} = min {table.get('minimumBet')}, "
-          + f" round {table.get('round')}, sum {rank_sum}, stack {we.stack}, players {len(table.get('players'))}")
+          + f" round {table.get('round')}, sum {rank_sum}, stack {we.get('stack')}, players {len(table.get('players'))}")
     del we
 
     return Bet(int(bet_amount))
