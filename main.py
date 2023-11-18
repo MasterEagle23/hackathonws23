@@ -14,4 +14,4 @@ def identify():
 
 @app.route('/', methods=['POST'])
 def bet():
-    return jsonify({'bet': int(decide(Table(request.json)))})
+    return jsonify({'bet': int(decide(request.json))})

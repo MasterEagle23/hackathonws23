@@ -1,18 +1,17 @@
 from models.bet import Bet
-from models.table import Table
 import datetime
 
 
-def decide(table: Table) -> Bet:
+def decide(table: dict) -> Bet:
     print(f"---\n[{datetime.datetime.now()}]\n")
-    we = table.players[table.activePlayer]
+    we = table.get("players")[table.get("activePlayer")]
 
     hand_cards = list([])
     for card in we.cards:
         hand_cards = hand_cards + [(card.rank.value, card.suit.value)]
 
     common_cards = []
-    for card in table.communityCards:
+    for card in table.get("communityCards"):
         common_cards = common_cards + [(card.rank.value, card.suit.value)]
 
     hand_cards = [hand_cards[-1], hand_cards[-2]]
@@ -47,24 +46,17 @@ def decide(table: Table) -> Bet:
         bet_amount = 0
 
     # dont raise with only one other player
-    elif len(table.players) < 3:
-        bet_amount = table.minimumBet
+    elif len(table.get("players")) < 3:
+        bet_amount = table.get("minimumBet")
     else:
-        bet_amount = table.minimumBet + ((1 / table.round + len(table.players))
+        bet_amount = table.get("minimumBet") + ((1 / table.get('round') + len(table.get("players")))
                                          * (rank_sum / len(hand_cards)) / 10) * we.stack
         # dont go all in with a medium hand
         if bet_amount - we.stack <= 0 and rank_sum < 30:
             bet_amount = 0
 
-    print(f"Bet: {bet_amount} = min {table.minimumBet}, "
-          + f" round {table.round}, sum {rank_sum}, stack {we.stack}, players {len(table.players)}")
+    print(f"Bet: {bet_amount} = min {table.get('minimumBet')}, "
+          + f" round {table.get('round')}, sum {rank_sum}, stack {we.stack}, players {len(table.get('players'))}")
     del we
 
     return Bet(int(bet_amount))
-"""
-    try:
-        print(table.__dict__)
-    except Exception:
-        pass
-"""
-
